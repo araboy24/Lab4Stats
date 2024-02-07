@@ -25,6 +25,57 @@ getwd()
 
 ```{r}
 spruce.df = read.csv("SPRUCE.csv")
-head(spruce.df)
-# change
+tail(spruce.df)
+```
+
+# Task 3
+
+```{r}
+library(s20x)
+with (spruce.df, 
+  trendscatter(Height~BHDiameter,f=0.5)
+)
+
+spruce.lm=with(spruce.df,lm(Height~BHDiameter)) 
+height.res = residuals(spruce.lm)
+print("height.res")
+height.res
+
+print("height.fit")
+height.fit=fitted(spruce.lm)
+height.fit
+
+plot(height.fit,height.res)
+
+trendscatter( height.fit,height.res)
+```
+
+The shape seen in the plot of comparing the fitted and residual values of height is a concave down quadratic graph that increases from 12 to 18 and decreases from 18 to 24. Compared to 
+
+## TODO Finish the comparison with the first trendscatter
+
+```{r}
+plot(spruce.lm, which =1)
+normcheck(spruce.lm,shapiro.wilk = TRUE)
+```
+
+The p value of the Shapiro-Wilk test is 0.29.
+
+## TODO Null Hypothesis
+
+The null hypothesis in this case is
+
+
+# Task 4
+
+## TODO quad.lm looks like its plotted wrong
+
+```{r}
+quad.lm=lm(Height~BHDiameter + I(BHDiameter^2),data=spruce.df)
+# with(spruce.df, plot(Height~BHDiameter))
+# abline(quad.lm)
+plot(Height~BHDiameter,bg="Blue",pch=21,cex=1.2,
+ylim=c(0,max(Height)),xlim=c(0,max(BHDiameter)), 
+main="Spruce height prediction",data=spruce.df)
+abline(quad.lm)
 ```
