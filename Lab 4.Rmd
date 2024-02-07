@@ -26,4 +26,5 @@ getwd()
 ```{r}
 spruce.df = read.csv("SPRUCE.csv")
 head(spruce.df)
+# change
 ```
