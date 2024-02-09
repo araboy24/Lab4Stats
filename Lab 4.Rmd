@@ -153,3 +153,33 @@ RSS
 MSS/TSS
 ```
 
+# Task 6
+
+```{r}
+cooks20x(quad.lm)
+```
+
+Cooks distance plot is used to find out how impactful certain data points are towards the regression analysis. The larger the distance is at a certain point, the more of an effect it has. It can be used to find outliers more easily and determine if the outlier is having a large effect or not. 
+
+Since the distance at 24 is largest, that observation number has the largest impact on the regression analysis.
+
+```{r}
+quad2.lm = lm(Height~BHDiameter + I(BHDiameter ^ 2), data = spruce.df[-24,])
+summary(quad2.lm)
+summary(quad.lm)
+```
+
+The multiple and adjusted R squared values are larger without the 24 being included in the data going from these values in quad.lm:
+
+Multiple R-squared: 0.7741,	Adjusted R-squared:  0.7604
+
+To these values in quad2.lm:
+
+Multiple R-squared:  0.8159,	Adjusted R-squared:  0.8044 
+
+The min and median are larger without the 24 included. The max however becomes smaller, causing the range to shrink. 
+
+In conclusion, Cooks plot correctly found a very impactful value because removing it caused R-squared values to increase by about 0.03.
+
+# Task 7
+
