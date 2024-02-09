@@ -183,3 +183,29 @@ In conclusion, Cooks plot correctly found a very impactful value because removin
 
 # Task 7
 
+```{r}
+spruce2.df = within(spruce.df, X <- (BHDiameter - 18) * (BHDiameter > 18))
+lmp = lm(Height~BHDiameter + X, data = spruce2.df)
+tmp = summary(lmp)
+myf = function(x, coef) {
+  coef[1] + coef[2] * (x) + coef[3] * (x-18) * (x-18>0)
+}
+plot(spruce.df, main="Piecewise Regression")
+myf(0, coef=tmp$coefficients[,"Estimate"])
+curve(myf(x, coef=tmp$coefficients[,"Estimate"]), add = TRUE, lwd=2, col="Blue")
+abline(v=18)
+text(18, 14, paste("R sq.=", round(tmp$r.squared, 4)))
+```
+
+# Task 8
+
+```{r}
+install.packages("C:/Users/eidza/OneDrive/Documents/MATH4753/RPACKAGES/MATH4753EidZaben24_0.1.0.tar.gz", repos = NULL, type = "source")
+library("MATH4753EidZaben24")
+sp.df <- myread2("SPRUCE.csv")
+head(sp.df)
+```
+
+This function takes in the name of a csv file and creates a dataframe. It returns the dataframe into a variable that is assigned to the functions return value. 
+
+In this case the variable sp.df is used, and the first six lines are outputted using head. 
