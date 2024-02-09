@@ -61,7 +61,6 @@ Since the plot of residuals vs fitted values in parabolic and not straight, a st
 
 # Task 4
 
-## TODO quad.lm looks like its plotted wrong
 
 ```{r}
 quad.lm=lm(Height~BHDiameter + I(BHDiameter^2),data=spruce.df)
